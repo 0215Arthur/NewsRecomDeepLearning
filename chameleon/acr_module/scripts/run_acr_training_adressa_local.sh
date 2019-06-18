@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa" && \
+DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa/data_transformed" && \
 JOB_PREFIX=adressa && \
 JOB_ID=`whoami`_${JOB_PREFIX}_`date '+%Y_%m_%d_%H%M%S'` && \
 MODEL_DIR='/tmp/chameleon/addressa/jobs/'${JOB_ID} && \

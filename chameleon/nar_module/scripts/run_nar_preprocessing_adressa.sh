@@ -6,7 +6,7 @@
 #and download the exported sessions JSON lines and the pickle with nar_encoders_dict to be used by this 2nd step of pre-processing
 
 
-DATA_DIR="[REPLACE WITH THE PATH TO UNZIPPED ADRESSA DATASET FOLDER]" && \
+DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa/data_transformed" && \
 
 #Testing pre-processing with new contextual features
 python3 -m nar.preprocessing.nar_preprocess_adressa \

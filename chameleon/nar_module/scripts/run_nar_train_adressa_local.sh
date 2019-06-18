@@ -1,19 +1,19 @@
 #!/bin/bash
 
-DATA_DIR="[REPLACE WITH THE PATH TO UNZIPPED ADRESSA DATASET FOLDER]" && \
+DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa/data_transformed" && \
 JOB_PREFIX=adressa && \
 JOB_ID=`whoami`_${JOB_PREFIX}_`date '+%Y_%m_%d_%H%M%S'` && \
 MODEL_DIR='/tmp/chameleon/jobs/'${JOB_ID} && \
 echo 'Running training job and outputing to '${MODEL_DIR} && \
 python3 -m nar.nar_trainer_adressa \
 	--model_dir ${MODEL_DIR} \
-	--train_set_path_regex "${DATA_DIR}/data_transformed/sessions_tfrecords_by_hour/adressa_sessions_*.tfrecord.gz" \
+	--train_set_path_regex "${DATA_DIR}/sessions_tfrecords_by_hour/adressa_sessions_*.tfrecord.gz" \
 	--train_files_from 0 \
 	--train_files_up_to 5 \
 	--training_hours_for_each_eval 1 \
 	--save_results_each_n_evals 1 \
-	--acr_module_resources_path ${DATA_DIR}/data_transformed/pickles/acr_articles_metadata_embeddings.pickle \
-	--nar_module_preprocessing_resources_path ${DATA_DIR}/data_transformed/pickles/nar_preprocessing_resources.pickle \
+	--acr_module_resources_path ${DATA_DIR}/pickles/acr_articles_metadata_embeddings.pickle \
+	--nar_module_preprocessing_resources_path ${DATA_DIR}/pickles/nar_preprocessing_resources.pickle \
 	--batch_size 64 \
 	--truncate_session_length 20 \
 	--learning_rate 0.0003 \

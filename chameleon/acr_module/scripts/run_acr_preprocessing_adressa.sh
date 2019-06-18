@@ -1,5 +1,5 @@
 #!/bin/bash
-DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa" && \
+DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa/data_transformed" && \
 python3 -m acr.preprocessing.acr_preprocess_adressa \
 	--input_articles_folder_path ${DATA_DIR}/home/lemeiz/content_refine \
  	--input_word_embeddings_path ${DATA_DIR}/word2vec/model.txt \
