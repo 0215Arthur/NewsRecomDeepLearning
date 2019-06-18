@@ -9,7 +9,7 @@ python3 -m nar.nar_trainer_adressa \
 	--model_dir ${MODEL_DIR} \
 	--train_set_path_regex "${DATA_DIR}/sessions_tfrecords_by_hour/adressa_sessions_*.tfrecord.gz" \
 	--train_files_from 0 \
-	--train_files_up_to 5 \
+	--train_files_up_to 383 \
 	--training_hours_for_each_eval 1 \
 	--save_results_each_n_evals 1 \
 	--acr_module_resources_path ${DATA_DIR}/pickles/acr_articles_metadata_embeddings.pickle \
