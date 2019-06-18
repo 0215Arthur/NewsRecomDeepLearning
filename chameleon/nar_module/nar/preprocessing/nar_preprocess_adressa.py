@@ -64,7 +64,6 @@ def load_nar_module_resources(nar_encoders_dict_path):
     return nar_encoders_dict
 
 def load_sessions_json_file(json_path):
-    print(json_path)
     with open(json_path, 'r') as fi:
         for line in fi:
             yield json.loads(line)
@@ -279,7 +278,7 @@ def main():
         #sessions_hour_df.to_csv('hour-{}-to-debug.csv'.format(hour_index))
 
         hour_stats['_hour_index'] = hour_index
-        stats.append(hour_stats)
+        #stats.append(hour_stats)
         
         clicks_by_articles_counters.append(hour_clicks_by_articles_counter)
         
