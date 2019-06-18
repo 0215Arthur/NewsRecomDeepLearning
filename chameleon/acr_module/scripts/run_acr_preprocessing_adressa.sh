@@ -1,8 +1,8 @@
 #!/bin/bash
-DATA_DIR="[REPLACE BY THE ADRESSA ARTICLES DATASET PATH]" && \
+DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa" && \
 python3 -m acr.preprocessing.acr_preprocess_adressa \
-	--input_articles_folder_path ${DATA_DIR}/data/contentdata \
- 	--input_word_embeddings_path ${DATA_DIR}/word_embeddings/w2v_skipgram_no_lemma_aviskorpus_nowac_nbdigital/model.txt \
+	--input_articles_folder_path ${DATA_DIR}/home/lemeiz/content_refine \
+ 	--input_word_embeddings_path ${DATA_DIR}/word2vec/model.txt \
  	--vocab_most_freq_words 100000 \
 	--max_words_length 1000 \
  	--output_word_vocab_embeddings_path ${DATA_DIR}/pickles/acr_word_vocab_embeddings.pickle \
