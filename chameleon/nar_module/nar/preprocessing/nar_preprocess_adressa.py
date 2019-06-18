@@ -64,6 +64,7 @@ def load_nar_module_resources(nar_encoders_dict_path):
     return nar_encoders_dict
 
 def load_sessions_json_file(json_path):
+    print(json_path)
     with open(json_path, 'r') as fi:
         for line in fi:
             yield json.loads(line)
