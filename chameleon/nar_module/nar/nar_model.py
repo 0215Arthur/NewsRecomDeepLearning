@@ -1386,13 +1386,9 @@ class ClickedItemsState:
     def update_items_coocurrences(self, batch_clicked_items):
         for session_items in batch_clicked_items:
             session_pairs = permutations(session_items[np.nonzero(session_items)], r=2)
-        rows, cols = zip(*session_pairs)
-        print("Session pair")
-        print(session_pairs)
-        print("Row, col -------------")
-        print(rows)
-        print(cols)
-        self.items_coocurrences[rows, cols] += 1
+        # rows, cols = zip(*session_pairs)
+        for row, col in session_pairs:
+            self.items_coocurrences[row, col] += 1
 
 
 
