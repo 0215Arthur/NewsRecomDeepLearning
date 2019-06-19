@@ -3,7 +3,7 @@
 DATA_DIR="/data/tungtv/Code/dataset/dataset_addresa/data_transformed" && \
 JOB_PREFIX=adressa && \
 JOB_ID=`whoami`_${JOB_PREFIX}_`date '+%Y_%m_%d_%H%M%S'` && \
-MODEL_DIR='/tmp/chameleon/jobs/'${JOB_ID} && \
+MODEL_DIR='/data/tungtv/Code/dataset/dataset_addresa/data_transformed/tmp/chameleon/jobs/'${JOB_ID} && \
 echo 'Running training job and outputing to '${MODEL_DIR} && \
 python3 -m nar.nar_trainer_adressa \
 	--model_dir ${MODEL_DIR} \
