@@ -8,6 +8,11 @@ def load_word_embeddings(path, binary=True):
     w2v_model = KeyedVectors.load_word2vec_format(path, binary=binary)
     return w2v_model
 
+# for model vietnamese
+def load_word_embeddings_vietnamese(path, binary=True):
+    w2v_model = KeyedVectors.load_word2vec_format(path, binary=binary)
+    return w2v_model
+
 def process_word_embedding_for_corpus_vocab(w2v_model, words_freq, 
                                             keep_most_frequent_words=100000):
     print('Tokens vocab. from articles: {}'.format(len(words_freq)))    
