@@ -10,7 +10,7 @@ def load_word_embeddings(path, binary=True):
 
 # for model vietnamese
 def load_word_embeddings_vietnamese(path, binary=True):
-    w2v_model = KeyedVectors.load_word2vec_format(path, binary=binary)
+    w2v_model = KeyedVectors.load_word2vec_format(path, binary=binary, unicode_errors='ignore')
     return w2v_model
 
 def process_word_embedding_for_corpus_vocab(w2v_model, words_freq, 

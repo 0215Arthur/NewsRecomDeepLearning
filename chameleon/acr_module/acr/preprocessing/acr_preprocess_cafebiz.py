@@ -15,7 +15,7 @@ import tensorflow as tf
 from ..tf_records_management import export_dataframe_to_tf_records, make_sequential_feature
 from ..utils import serialize, chunks, get_categ_encoder_from_values, encode_categ_feature
 from .tokenization import tokenize_articles, nan_to_str, convert_tokens_to_int, get_words_freq
-from .word_embeddings import load_word_embeddings, process_word_embedding_for_corpus_vocab, save_word_vocab_embeddings
+from .word_embeddings import load_word_embeddings, process_word_embedding_for_corpus_vocab, save_word_vocab_embeddings, load_word_embeddings_vietnamese
 
 def create_args_parser():
     parser = argparse.ArgumentParser()
@@ -328,16 +328,22 @@ def save_article_cat_encoders(output_path, cat_features_encoders, labels_class_w
 
 
 def make_sequence_example(row):
+    # context_features = {
+    #     'article_id': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['id_encoded']])),
+    #     'category0': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['category0_encoded']])),
+    #     'category1': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['category1_encoded']])),
+    #     'author': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['author_encoded']])),
+    #     'created_at_ts': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['created_at_ts']])),
+    #     'text_length': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['text_length']])),
+    #     #Only for debug
+    #     'article_id_original': tf.train.Feature(bytes_list=tf.train.BytesList(value=[row['id'].encode()])),
+    #     'url': tf.train.Feature(bytes_list=tf.train.BytesList(value=[row['url'].encode()]))
+    # }
+
     context_features = {
         'article_id': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['id_encoded']])),
         'category0': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['category0_encoded']])),
-        'category1': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['category1_encoded']])),
-        'author': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['author_encoded']])),
-        'created_at_ts': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['created_at_ts']])),
-        'text_length': tf.train.Feature(int64_list=tf.train.Int64List(value=[row['text_length']])),
-        #Only for debug
-        'article_id_original': tf.train.Feature(bytes_list=tf.train.BytesList(value=[row['id'].encode()])),
-        'url': tf.train.Feature(bytes_list=tf.train.BytesList(value=[row['url'].encode()]))
+
     }
     
     context = tf.train.Features(feature=context_features)
@@ -473,7 +479,7 @@ def main():
     words_freq = get_words_freq(tokenized_articles)
 
     print("Loading word2vec model and extracting words of this corpus' vocabulary...")
-    w2v_model = load_word_embeddings(args.input_word_embeddings_path, binary=False)
+    w2v_model = load_word_embeddings_vietnamese(args.input_word_embeddings_path, binary=False)
     word_vocab, word_embeddings_matrix = process_word_embedding_for_corpus_vocab(w2v_model, 
                                                                                 words_freq,
                                                                                 args.vocab_most_freq_words)
